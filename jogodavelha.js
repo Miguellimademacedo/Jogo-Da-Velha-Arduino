@@ -33,11 +33,11 @@
     // Anotar/Registrar a jogada, do primeiro jogador
     velha = 1;
     do {
-        window.alert(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-        window.alert(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-        window.alert(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+        console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
+        console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
+        console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
-        window.alert("Digite a posição de sua peça JOGADOR" + jogadorDaVez);
+        console.log("Digite a posição de sua peça JOGADOR" + jogadorDaVez);
         jogada = window.prompt('Enter a value for jogada');
 
         // Converter a jogada texto em dois inteiros linha e coluna
@@ -48,7 +48,7 @@
         var coluna;
 
         coluna = parseInt(jogada.charAt(2));
-        window.alert("Linha: " + linha + "; Coluna: " + coluna);
+        console.log("Linha: " + linha + "; Coluna: " + coluna);
 
         // Verificar se a posição "jogada" é válida
         if (tabuleiro[3 * linha + coluna] == 0) {
@@ -81,7 +81,7 @@
 
             // Trocar jogador
         } else {
-            window.alert("Posição está inválida, jogue novamente!!!");
+            console.log("Posição está inválida, jogue novamente!!!");
 
             // Informar ao jogador 1 que a posição está preechida, é inválida e ele precisa informar uma posição válida.
         }
@@ -89,11 +89,11 @@
         // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo
     } while (!haVencedor && velha <= 9);
     if (haVencedor) {
-        window.alert("Parabéns pela vitória, jogador" + jogadorDaVez);
+        console.log("Parabéns pela vitória, jogador" + jogadorDaVez);
     } else {
-        window.alert("DEU VELHA");
+        console.log("DEU VELHA");
     }
-    window.alert(jogadorDaVez.ToString() + "GANHOU!!! Jogadas: " + velha);
+    console.log(jogadorDaVez.ToString() + "GANHOU!!! Jogadas: " + velha);
 
     // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo
 }
