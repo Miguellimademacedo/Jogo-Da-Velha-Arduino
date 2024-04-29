@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="I1HM"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-04-25 03:08:34 "/>
+        <attribute name="saved" value="2024-04-29 10:11:19 "/>
         <attribute name="created" value="STFITTtFQ0U0MzZTRU5BSVhYOzIwMjQtMDQtMTg7IjEwOjAwOjU4ICI7MjM2Nw=="/>
-        <attribute name="edited" value="STFITTtFQ0U0MzZTRU5BSVhYOzIwMjQtMDQtMjU7IjAzOjA4OjM0ICI7MTE7MjUyNg=="/>
+        <attribute name="edited" value="STFITTtFQ0U0MzZTRU5BSVhYOzIwMjQtMDQtMjk7IjEwOjExOjE5ICI7MTI7MjUyNg=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -51,37 +51,6 @@
                         <assign variable="tabuleiro[3*linha + coluna]" expression="JogadorDaVez"/>
                         <comment text="Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo."/>
                         <comment text="Verificar a jogada vencedora nas linhas"/>
-                        <if expression="(tabuleiro[0]==JogadorDaVez &amp;&amp; tabuleiro[1]==JogadorDaVez &amp;&amp; tabuleiro[2]==JogadorDaVez)|| (tabuleiro[3]==JogadorDaVez &amp;&amp; tabuleiro[4]==JogadorDaVez &amp;&amp; tabuleiro[5]==JogadorDaVez) ||&#13;&#10;(tabuleiro[6]==JogadorDaVez &amp;&amp; tabuleiro[7]==JogadorDaVez &amp;&amp; tabuleiro[8]==JogadorDaVez)">
-                            <then>
-                                <assign variable="HaVencedor" expression="true"/>
-                            </then>
-                            <else>
-                                <comment text="Verificar a jogada vencedora nas colunas"/>
-                                <if expression="(tabuleiro[0]==JogadorDaVez &amp;&amp; tabuleiro[3]==JogadorDaVez &amp;&amp; tabuleiro[6]==JogadorDaVez) || &#13;&#10;(tabuleiro[1]==JogadorDaVez &amp;&amp; tabuleiro[4]==JogadorDaVez &amp;&amp; tabuleiro[7]==JogadorDaVez) ||&#13;&#10;(tabuleiro[2]==JogadorDaVez &amp;&amp; tabuleiro[5]==JogadorDaVez &amp;&amp; tabuleiro[8]==JogadorDaVez)">
-                                    <then>
-                                        <assign variable="HaVencedor" expression="true"/>
-                                    </then>
-                                    <else>
-                                        <comment text="Verificar a jogada vencedora nas diagonais"/>
-                                        <if expression="(tabuleiro[0]==JogadorDaVez &amp;&amp; tabuleiro[4]==JogadorDaVez &amp;&amp; tabuleiro[8]==JogadorDaVez)|| (tabuleiro[2]==JogadorDaVez &amp;&amp; &#13;&#10;tabuleiro[4]==JogadorDaVez &amp;&amp; tabuleiro[6] ==JogadorDaVez)">
-                                            <then>
-                                                <assign variable="HaVencedor" expression="true"/>
-                                            </then>
-                                            <else>
-                                                <if expression="JogadorDaVez ==1">
-                                                    <then>
-                                                        <assign variable="JogadorDaVez" expression="2"/>
-                                                    </then>
-                                                    <else>
-                                                        <assign variable="JogadorDaVez" expression="1"/>
-                                                    </else>
-                                                </if>
-                                            </else>
-                                        </if>
-                                    </else>
-                                </if>
-                            </else>
-                        </if>
                         <assign variable="velha" expression="velha + 1"/>
                         <comment text="Trocar jogador "/>
                     </then>
