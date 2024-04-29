@@ -1,5 +1,7 @@
 # Jogo-Da-Velha-Arduino
 
+**Autor;** Miguel Lima 
+
 Briefing
 
 ### Introdução:
