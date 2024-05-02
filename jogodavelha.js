@@ -9,7 +9,7 @@
     // 0: Posição vazia
     // 1: jogada na Posição do jogador 1
     // 2: jogada na Posição do jogador 2
-    var tabuleiro = createArray(9);
+    var tabuleiro = Array(9);
 
     // Limpar/zerar o tabuleiro
     var index;
@@ -33,9 +33,9 @@
     // Anotar/Registrar a jogada, do primeiro jogador
     velha = 1;
     do {
-       console.log(tabuleiro[0].ToString() + tabuleiro[1] + tabuleiro[2]);
-       console.log(tabuleiro[3].ToString() + tabuleiro[4] + tabuleiro[5]);
-       console.log(tabuleiro[6].ToString() + tabuleiro[7] + tabuleiro[8]);
+       console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
+       console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
+       console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
         jogada = "";
        console.log("Digite a posição de sua peça JOGADOR" + jogadorDaVez);
         jogada = window.prompt('Enter a value for jogada');
@@ -93,7 +93,7 @@
     } else {
        console.log("DEU VELHA");
     }
-   console.log(jogadorDaVez.ToString() + "GANHOU!!! Jogadas: " + velha);
+   console.log(jogadorDaVez.toString() + "GANHOU!!! Jogadas: " + velha);
 
     // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo
 }
@@ -107,7 +107,7 @@ function validaEntrada(entrada) {
     var retorno;
 
     retorno = false;
-    if (entrada.length() == 3) {
+    if (entrada.length == 3) {
         if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
             if (entrada.charAt(2) == "0" || entrada.charAt(2) == "1" || entrada.charAt(2) == "2") {
                 retorno = true;
