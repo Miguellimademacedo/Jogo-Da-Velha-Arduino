@@ -1,119 +1,160 @@
-﻿function main() {
-    var velha;
-    var haVencedor;
+/*#include <iostream>
+#include <sstream>
+#include <String>
+#include <cstdlib>
+#include <cmath>
 
-    haVencedor = false;
+using namespace std;
+*/
 
+// Headers
+String toString (double);
+int toInt (String);
+double toDouble (String);
+bool validaPosicao(String entrada);
+
+int main() {
     // Criar o tabuleiro e jogadores, zerar as variáveis.
     // 
     // 0: Posição vazia
     // 1: jogada na Posição do jogador 1
     // 2: jogada na Posição do jogador 2
-    var tabuleiro = Array(9);
+    int velha;
+    int linha;
+    int coluna;
+    bool haVencedor;
+
+    haVencedor = false;
+    int tabuleiro[9];
 
     // Limpar/zerar o tabuleiro
-    var index;
+    int index;
 
     for (index = 0; index <= 8; index++) {
         tabuleiro[index] = 0;
     }
-    var jogador1;
+    String jogador1;
 
-    jogador1 = "jogador1";
-    var jogador2;
+    jogador1 = "Jogador 1";
+    String jogador2;
 
-    jogador2 = "jogador2";
-    var jogada;
+    jogador2 = "Jogador 2";
+    String jogada;
 
     // Iniciar o jogo, definir quem joga primeiro
-    var jogadorDaVez;
+    int jogadorDaVez;
 
     jogadorDaVez = 1;
 
     // Anotar/Registrar a jogada, do primeiro jogador
     velha = 1;
     do {
-       console.log(tabuleiro[0].toString() + tabuleiro[1] + tabuleiro[2]);
-       console.log(tabuleiro[3].toString() + tabuleiro[4] + tabuleiro[5]);
-       console.log(tabuleiro[6].toString() + tabuleiro[7] + tabuleiro[8]);
+    Serial.println(tabuleiro[0] || tabuleiro[1] || tabuleiro[2]);
+    Serial.println (tabuleiro[3] || tabuleiro[4] || tabuleiro[5]);
+    Serial.println (tabuleiro[6] || tabuleiro[7] || tabuleiro[8]);
         jogada = "";
-       console.log("Digite a posição de sua peça JOGADOR" + jogadorDaVez);
-        jogada = window.prompt('Enter a value for jogada');
+        Serial.println ("Digite a posição da sua peça JOGADOR " + String(jogadorDaVez)) ;
+        jogada = Serial.readString ();
+        if (validaPosicao(jogada)) {
 
-        // Converter a jogada texto em dois inteiros linha e coluna
-        // Simula a função Serial.parseint() do Arduino
-        var linha;
+            // Converter a jogada texto em dois inteiros linha e coluna.
+            // Simula a função Serial.parseInt() do Arduino
+            linha = int(jogada[0]);
 
-        linha = parseInt(jogada.charAt(0));
-        var coluna;
+            // CORRIGIR O ERRO DE DIGITAÇÃO
+            coluna = int(jogada[2]);
+            Serial.println ("Linha: " || linha || "; Coluna: " || coluna);
 
-        coluna = parseInt(jogada.charAt(2));
-       console.log("Linha: " + linha + "; Coluna: " + coluna);
-
-        // Verificar se a posição "jogada" é válida
-        if (tabuleiro[3 * linha + coluna] == 0) {
-            tabuleiro[3 * linha + coluna] = jogadorDaVez;
-
-            // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo.
-            // Verificar a jogada vencedora nas linhas
-            if (tabuleiro[0] == jogadorDaVez && tabuleiro[1] == jogadorDaVez && tabuleiro[2] == jogadorDaVez || tabuleiro[3] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[5] == jogadorDaVez || tabuleiro[6] == jogadorDaVez && tabuleiro[7] == jogadorDaVez && tabuleiro[8] == jogadorDaVez) {
-                haVencedor = true;
-            } else {
-
-                // Verificar a jogada vencedora nas colunas
-                if (tabuleiro[0] == jogadorDaVez && tabuleiro[3] == jogadorDaVez && tabuleiro[6] == jogadorDaVez || tabuleiro[1] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[7] == jogadorDaVez || tabuleiro[2] == jogadorDaVez && tabuleiro[5] == jogadorDaVez && tabuleiro[8] == jogadorDaVez) {
+            // Verificar se a posição 'jogada' é valida
+            if (tabuleiro[3 * linha + coluna] == 0) {
+                tabuleiro[3 * linha + coluna] = jogadorDaVez;
+                if (tabuleiro[0] == jogadorDaVez && tabuleiro[1] == jogadorDaVez && tabuleiro[2] == jogadorDaVez || tabuleiro[3] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[5] == jogadorDaVez || tabuleiro[6] == jogadorDaVez && tabuleiro[7] == jogadorDaVez && tabuleiro[8] == jogadorDaVez) {
                     haVencedor = true;
                 } else {
 
-                    // Verificar a jogada vencedora nas diagonais
-                    if (tabuleiro[0] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[8] == jogadorDaVez || tabuleiro[2] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[6] == jogadorDaVez) {
+                    // Verificar a jogada vencedora nas colunas.
+                    if (tabuleiro[0] == jogadorDaVez && tabuleiro[3] == jogadorDaVez && tabuleiro[6] == jogadorDaVez || tabuleiro[1] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[7] == jogadorDaVez || tabuleiro[2] == jogadorDaVez && tabuleiro[5] == jogadorDaVez && tabuleiro[8] == jogadorDaVez) {
                         haVencedor = true;
                     } else {
-                        if (jogadorDaVez == 1) {
-                            jogadorDaVez = 2;
+
+                        // Verificar a jogada vencedora nas diagonais.
+                        if (tabuleiro[0] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[8] == jogadorDaVez || tabuleiro[2] == jogadorDaVez && tabuleiro[4] == jogadorDaVez && tabuleiro[6] == jogadorDaVez) {
+                            haVencedor = true;
                         } else {
-                            jogadorDaVez = 1;
+
+                            // Trocar o jogador
+                            if (jogadorDaVez == 1) {
+                                jogadorDaVez = 2;
+                            } else {
+                                jogadorDaVez = 1;
+                            }
                         }
                     }
                 }
-            }
-            velha = velha + 1;
+                velha = velha + 1;
+            } else {
+                Serial.println  ("Posição ocupada, jogue novamente !!!") ;
 
-            // Trocar jogador
+                // Informar ao Jogador 1 que a posição está preenchida, é inválida e ele precisa informar um posição válida.
+            }
         } else {
-           console.log("Posição está inválida, jogue novamente!!!");
-
-            // Informar ao jogador 1 que a posição está preechida, é inválida e ele precisa informar uma posição válida.
+            Serial.println ( "Jogada inválida !!!" );
         }
 
-        // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo
+        // Verificar a jogada vencedora nas linhas.
     } while (!haVencedor && velha <= 9);
+
+    // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo.
     if (haVencedor) {
-       console.log("Parabéns pela vitória, jogador" + jogadorDaVez);
+        Serial.println ("Parabéns pela a vitória, jogador ") ;
     } else {
-       console.log("DEU VELHA");
+        Serial.println ("Deu VELHA!!!");
     }
-   console.log(jogadorDaVez.toString() + "GANHOU!!! Jogadas: " + velha);
-
-    // Verificar o tabuleiro, se houve ganhador ou empate, finalizar o jogo
+    Serial.println(tabuleiro [0] ||  tabuleiro[1] ||  tabuleiro[2]);
+    Serial.println (tabuleiro[3] || tabuleiro[4] || tabuleiro[5]);
+    Serial.println (tabuleiro[6] || tabuleiro[7] || tabuleiro[8]);
+    return 0;
 }
 
-function funçãoparatabuleiro() {
-    
-    return ;
-}
+bool validaPosicao(String entrada) {
+    // Função para validar a entrada da jogada por meio de texto, o formato deve ser:
+    // Primeiro caracter: 0 ou 1 ou 2
+    // Segundo caracter: qualquer um
+    // Terceiro caracter: 0 ou 1 ou 2
+    bool entradaValida;
 
-function validaEntrada(entrada) {
-    var retorno;
+    entradaValida = false;
 
-    retorno = false;
-    if (entrada.length == 3) {
-        if (entrada.charAt(0) == "0" || entrada.charAt(0) == "1" || entrada.charAt(0) == "2") {
-            if (entrada.charAt(2) == "0" || entrada.charAt(2) == "1" || entrada.charAt(2) == "2") {
-                retorno = true;
+    // A entra da jogadanão pode ter mais que 3 caracteres de comprimento.
+    if (entrada.length() == 3) {
+
+        // Verifica o primeiro caracter se há somente caracteres válidos (0,1,2).
+        if (entrada[0] == "0" || entrada[0] == "1" || entrada[0] == "2") {
+
+            // Verifica o terceiro caracter se há somente caracteres válidos (0,1,2).
+            if (entrada[2] == "0" || entrada[2] == "1" || entrada[2] == "2") {
+
+                // Retorna verdadeiro se a entrada da jogada possui os caracteres e comprimentos válidos.
+                entradaValida = true;
             }
         }
     }
     
-    return retorno;
+    return entradaValida;
 }
+
+/*// The following implements type conversion functions.
+String toString (double value) { //int also
+    stringstream temp;
+    temp << value;
+    return temp.str();
+}
+
+int toInt (String text) {
+    return atoi(text.c_str());
+}
+
+double toDouble (String text) {
+    return atof(text.c_str());
+}
+*/
